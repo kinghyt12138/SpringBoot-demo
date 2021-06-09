@@ -33,7 +33,7 @@ public class UserController {
     @RequestMapping("Dynamicfind")
     public String Dynamicfind(HttpServletRequest request, Model model, ModelAndView modelAndView){
         ParamPojo paramPojo = new ParamPojo();
-//        paramPojo.setName("king");
+        paramPojo.setName("g");
         paramPojo.setAge(20);
         List<User> userList = userService.Dynamicfind(paramPojo);
         //将结果放入请求作用域

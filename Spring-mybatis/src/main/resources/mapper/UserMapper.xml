@@ -30,7 +30,7 @@
         select id,name,age,salary from student
                 <trim prefix="where" prefixOverrides="AND | OR">
                     <if test="name!=null and name!=''">
-                        and name =#{name}
+                        and name like concat('%', #{name})
                     </if>
                     <if test="age!=null and age!=''">
                         and age =#{age}
