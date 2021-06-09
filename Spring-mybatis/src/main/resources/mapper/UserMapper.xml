@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.demo.dao.UserDao">
+<!--    查询所有 mybatis不支持接口重载 方法名相同参数不同不允许-->
+    <select id="findList" resultType="User">
+        select id,name,age,salary from student;
+    </select>
+<!--    保存-->
+    <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into student(name,age,salary) values(#{name},#{age},#{salary})
+    </insert>
+<!--    修改-->
+    <update id="update" parameterType="User">
+        update student
+        set name = #{name},age=#{age},salary = #{salary}
+        where id = #{id}
+    </update>
+<!--    通过id查找-->
+    <select id="findById" parameterType="Integer" resultType="User">
+        select id,name,age,salary from student where id=#{id}
+    </select>
+<!--    通过id删除-->
+    <delete id="delete" parameterType="Integer">
+        delete from student where id=#{id}
+    </delete>
+</mapper>
