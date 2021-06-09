@@ -1,5 +1,6 @@
 package com.hyt.demo.service;
 
+import com.hyt.demo.entity.ParamPojo;
 import com.hyt.demo.entity.User;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface UserService {
     User findByiId(Integer id);
 //    通过id删除用户
     void delete(Integer id);
+//    动态查询
+List<User> Dynamicfind(ParamPojo paramPojo);
 }

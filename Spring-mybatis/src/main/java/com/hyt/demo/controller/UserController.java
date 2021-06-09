@@ -1,5 +1,6 @@
 package com.hyt.demo.controller;
 
+import com.hyt.demo.entity.ParamPojo;
 import com.hyt.demo.entity.User;
 import com.hyt.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,17 @@ public class UserController {
     @RequestMapping("findAll")
     public String findList(HttpServletRequest request, Model model, ModelAndView modelAndView){
         List<User> userList = userService.findList();
+        //将结果放入请求作用域
+        model.addAttribute("userList",userList);
+        return "userList";
+    }
+
+    @RequestMapping("Dynamicfind")
+    public String Dynamicfind(HttpServletRequest request, Model model, ModelAndView modelAndView){
+        ParamPojo paramPojo = new ParamPojo();
+//        paramPojo.setName("king");
+        paramPojo.setAge(20);
+        List<User> userList = userService.Dynamicfind(paramPojo);
         //将结果放入请求作用域
         model.addAttribute("userList",userList);
         return "userList";

@@ -5,7 +5,7 @@
 <mapper namespace="com.hyt.demo.dao.UserDao">
 <!--    查询所有 mybatis不支持接口重载 方法名相同参数不同不允许-->
     <select id="findList" resultType="User">
-        select id,name,age,salary from student;
+        select id,name,age,salary from student
     </select>
 <!--    保存-->
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
@@ -25,4 +25,16 @@
     <delete id="delete" parameterType="Integer">
         delete from student where id=#{id}
     </delete>
+<!--动态查询-->
+    <select id="Dynamicfind" resultType="User" parameterType="paramPojo">
+        select id,name,age,salary from student
+                <trim prefix="where" prefixOverrides="AND | OR">
+                    <if test="name!=null and name!=''">
+                        and name =#{name}
+                    </if>
+                    <if test="age!=null and age!=''">
+                        and age =#{age}
+                    </if>
+                </trim>
+    </select>
 </mapper>

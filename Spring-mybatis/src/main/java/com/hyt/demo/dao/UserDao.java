@@ -1,5 +1,6 @@
 package com.hyt.demo.dao;
 
+import com.hyt.demo.entity.ParamPojo;
 import com.hyt.demo.entity.User;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface UserDao {
     User findById(Integer id);
 //    删除
     void delete(Integer id);
+//    动态查询
+    List<User> Dynamicfind(ParamPojo paramPojo);
 }

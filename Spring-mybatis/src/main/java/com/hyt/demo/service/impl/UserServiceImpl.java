@@ -1,11 +1,13 @@
 package com.hyt.demo.service.impl;
 
 import com.hyt.demo.dao.UserDao;
+import com.hyt.demo.entity.ParamPojo;
 import com.hyt.demo.entity.User;
 import com.hyt.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @Service// bean id=“” class=""
 @Slf4j
+//事务控制  当方法执行出错 回滚操作
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
@@ -45,5 +49,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Integer id) {
         userDao.delete(id);
+    }
+
+    @Override
+    public List<User> Dynamicfind(ParamPojo paramPojo) {
+        return userDao.Dynamicfind(paramPojo);
     }
 }
