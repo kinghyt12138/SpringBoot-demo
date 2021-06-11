@@ -1,5 +1,4 @@
 package com.hyt.demo.controller;
-
 import com.hyt.demo.entity.ParamPojo;
 import com.hyt.demo.entity.User;
 import com.hyt.demo.service.UserService;
@@ -43,6 +42,7 @@ public class UserController {
     @RequestMapping("save")
     private String save(User user){
         userService.save(user);
+        //springmvc会自动加上项目根路径 相当于又请求了一次
         return "redirect:/user/findAll";
     }
 
@@ -63,4 +63,9 @@ public class UserController {
         userService.delete(id);
         return "redirect:/user/findAll";
     }
+
+
+
+    //只做业务处理 不做试图解析
+
 }
